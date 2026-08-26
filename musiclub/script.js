@@ -1249,6 +1249,13 @@ document.addEventListener('DOMContentLoaded', () => {
   playerNextBtn.addEventListener('click', nextSong);
   playerPrevBtn.addEventListener('click', prevSong);
 
+  // Hero Play Now Button
+  if (heroPlayBtn) {
+    heroPlayBtn.addEventListener('click', () => {
+      playPlaylistDirectly("Chill Vibes");
+    });
+  }
+
   // Keyboard controls (Spacebar toggles play/pause when typing input is not focused)
   window.addEventListener('keydown', (e) => {
     if (e.key === ' ' && document.activeElement !== searchInput) {
