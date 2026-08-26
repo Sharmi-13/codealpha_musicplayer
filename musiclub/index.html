@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musiclub - Premium Audio Streaming</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Main Application Container -->
+  <div id="app-container">
+    
+    <!-- 1. LEFT SIDEBAR (Desktop) -->
+    <aside class="sidebar" aria-label="Main Navigation">
+      <div class="logo-container">
+        <!-- Custom CSS/SVG Brand Logo -->
+        <a href="#" class="logo" id="logo-btn" aria-label="Musiclub Home">
+          <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5v14M7 9v6M22 8v8M2 10v4" />
+          </svg>
+          <span class="logo-text">MUSICLUB</span>
+        </a>
+      </div>
+
+      <nav class="nav-group" aria-label="Primary Navigation">
+        <ul>
+          <li>
+            <button class="nav-link active" data-view="home" aria-label="Go to Home">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              <span>Home</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-view="discover" aria-label="Go to Discover">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+              <span>Discover</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-view="library" aria-label="Go to Your Library">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              <span>Your Library</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-link" data-view="favorites" aria-label="Go to Favorites">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <span>Favorites</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-playlists" aria-label="Playlists">
+        <h3 class="sidebar-section-title">Playlists</h3>
+        <ul id="sidebar-playlist-list">
+          <!-- Dynamic sidebar playlists loaded here -->
+        </ul>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="user-profile">
+          <div class="user-avatar" aria-hidden="true">JD</div>
+          <div class="user-info">
+            <span class="user-name">John Doe</span>
+            <span class="user-plan">Premium User</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <div class="main-content">
+      
+      <!-- TOP HEADER -->
+      <header class="main-header">
+        <div class="search-container">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" placeholder="Search songs, artists, albums..." aria-label="Search input">
+          <button id="search-clear-btn" aria-label="Clear search" style="display: none;">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="header-actions">
+          <button class="header-btn notification-btn" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          </button>
+          <div class="mobile-logo">
+            <span class="logo-text">MUSICLUB</span>
+          </div>
+          <button class="header-btn profile-btn" aria-label="Profile Menu">
+            <div class="user-avatar" aria-hidden="true">JD</div>
+          </button>
+        </div>
+      </header>
+
+      <!-- DYNAMIC CONTENT VIEWPORTS -->
+      <div id="viewport" class="viewport">
+        
+        <!-- SEARCH RESULTS OVERLAY (Active dynamically) -->
+        <section id="search-results-view" class="view-section" style="display: none;">
+          <h2 class="section-title">Search Results</h2>
+          <div id="search-results-container">
+            <!-- Dynamic Search Rows -->
+          </div>
+        </section>
+
+        <!-- VIEW: HOME -->
+        <section id="home-view" class="view-section active">
+          <!-- Hero Section -->
+          <div class="hero-banner">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <span class="hero-tag">FEATURED MIX</span>
+              <h1 id="dynamic-greeting" class="hero-greeting">Good evening</h1>
+              <p class="hero-subtitle">Your music, your mood. Dive into the featured flow of the day.</p>
+              <h2 id="featured-title" class="hero-playlist-title">Chill Vibes</h2>
+              <div class="hero-actions">
+                <button class="btn btn-primary" id="hero-play-btn" aria-label="Play Featured Playlist">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Play Now</span>
+                </button>
+              </div>
+            </div>
+            <div class="hero-artwork-wrap">
+              <img id="hero-artwork" src="https://samplesongs.netlify.app/album-arts/death-bed.jpg" alt="Featured Album Art">
+            </div>
+          </div>
+
+          <!-- Recently Played -->
+          <div class="section-container">
+            <h2 class="section-title">Recently Played</h2>
+            <div class="recently-played-grid" id="recently-played-container">
+              <!-- Dynamically populated cards -->
+            </div>
+          </div>
+
+          <!-- Made For You (Playlists) -->
+          <div class="section-container">
+            <h2 class="section-title">Made For You</h2>
+            <div class="playlists-grid" id="made-for-you-container">
+              <!-- Dynamically populated playlist cards -->
+            </div>
+          </div>
+
+          <!-- Trending Now -->
+          <div class="section-container">
+            <h2 class="section-title">Trending Now</h2>
+            <div class="table-container">
+              <table class="song-table">
+                <thead>
+                  <tr>
+                    <th class="col-num">#</th>
+                    <th class="col-title">Title</th>
+                    <th class="col-album">Album</th>
+                    <th class="col-action"></th>
+                    <th class="col-duration">Duration</th>
+                  </tr>
+                </thead>
+                <tbody id="trending-table-body">
+                  <!-- Dynamically populated rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW: DISCOVER -->
+        <section id="discover-view" class="view-section" style="display: none;">
+          <h2 class="section-title">Discover New Sounds</h2>
+          
+          <div class="discover-hero">
+            <h3>Find your rhythm</h3>
+            <p>Explore curated genres, new releases, and soundscapes handpicked for you.</p>
+          </div>
+
+          <div class="section-container">
+            <h3 class="subsection-title">Browse Genres & Moods</h3>
+            <div class="genre-grid">
+              <div class="genre-card" style="background: linear-gradient(135deg, #7c3aed, #4f46e5);" data-playlist="Chill Vibes">
+                <span>Chill Vibes</span>
+              </div>
+              <div class="genre-card" style="background: linear-gradient(135deg, #ec4899, #f43f5e);" data-playlist="Daily Mix">
+                <span>Daily Mix</span>
+              </div>
+              <div class="genre-card" style="background: linear-gradient(135deg, #10b981, #059669);" data-playlist="Focus Flow">
+                <span>Focus Flow</span>
+              </div>
+              <div class="genre-card" style="background: linear-gradient(135deg, #f59e0b, #d97706);" data-playlist="Late Night">
+                <span>Late Night</span>
+              </div>
+              <div class="genre-card" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);" data-playlist="Weekend Energy">
+                <span>Weekend Energy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-container">
+            <h3 class="subsection-title">Popular Recommendations</h3>
+            <div class="playlists-grid" id="discover-recommendations-container">
+              <!-- Reuses playlist rendering -->
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW: YOUR LIBRARY -->
+        <section id="library-view" class="view-section" style="display: none;">
+          <h2 class="section-title">Your Library</h2>
+          
+          <div class="library-tabs">
+            <button class="lib-tab active" data-tab="playlists">Playlists</button>
+            <button class="lib-tab" data-tab="recent">Recently Played</button>
+          </div>
+
+          <div id="library-tab-content">
+            <!-- Dynamically populated based on active tab -->
+          </div>
+        </section>
+
+        <!-- VIEW: FAVORITES -->
+        <section id="favorites-view" class="view-section" style="display: none;">
+          <div class="favorites-header">
+            <div class="favorites-icon-banner">
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="currentColor" color="#7c3aed"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            </div>
+            <div class="favorites-header-text">
+              <span class="favorites-badge">PLAYLIST</span>
+              <h2>Favorites</h2>
+              <p id="favorites-count-label">0 songs</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="song-table">
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th class="col-title">Title</th>
+                  <th class="col-album">Album</th>
+                  <th class="col-action"></th>
+                  <th class="col-duration">Duration</th>
+                </tr>
+              </thead>
+              <tbody id="favorites-table-body">
+                <!-- Dynamically filled or empty state -->
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Empty Favorites State -->
+          <div id="favorites-empty-state" class="empty-state" style="display: none;">
+            <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="empty-icon"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <h3>No favorites yet</h3>
+            <p>Songs you love will appear here.</p>
+          </div>
+        </section>
+
+        <!-- VIEW: PLAYLIST DETAIL -->
+        <section id="playlist-view" class="view-section" style="display: none;">
+          <div class="playlist-detail-header">
+            <div class="playlist-artwork-wrap">
+              <img id="playlist-detail-artwork" src="" alt="Playlist Cover Art">
+            </div>
+            <div class="playlist-info-wrap">
+              <span class="playlist-badge">PLAYLIST</span>
+              <h2 id="playlist-detail-name">Chill Vibes</h2>
+              <p id="playlist-detail-desc" class="playlist-desc">Relaxing acoustic rhythms and soft background tones.</p>
+              <div class="playlist-meta">
+                <span id="playlist-detail-count">0 songs</span>
+                <span class="bullet">•</span>
+                <span id="playlist-detail-duration">0 min</span>
+              </div>
+              <div class="playlist-actions-row">
+                <button class="btn btn-primary" id="playlist-detail-play-btn" aria-label="Play Playlist">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  <span>Play</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="song-table">
+              <thead>
+                <tr>
+                  <th class="col-num">#</th>
+                  <th class="col-title">Title</th>
+                  <th class="col-album">Album</th>
+                  <th class="col-action"></th>
+                  <th class="col-duration">Duration</th>
+                </tr>
+              </thead>
+              <tbody id="playlist-table-body">
+                <!-- Loaded songs dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- 3. RIGHT QUEUE PANEL -->
+    <aside id="queue-panel" class="queue-panel" aria-label="Play Queue">
+      <div class="queue-header">
+        <h3>Play Queue</h3>
+        <button id="queue-close-btn" class="queue-close-btn" aria-label="Close queue panel">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="queue-section now-playing-section">
+        <span class="queue-section-label">NOW PLAYING</span>
+        <div id="queue-now-playing-container">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+
+      <div class="queue-section upcoming-section">
+        <div class="queue-section-title-row">
+          <span class="queue-section-label">UPCOMING</span>
+          <span id="queue-count-badge" class="queue-badge">0 tracks</span>
+        </div>
+        <div id="queue-upcoming-list" class="queue-upcoming-list">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- 4. FIXED BOTTOM MUSIC PLAYER -->
+    <footer class="player-bar" aria-label="Playback controls">
+      
+      <!-- Player Left: Track Details -->
+      <div class="player-track-info">
+        <img id="player-artwork" src="https://samplesongs.netlify.app/album-arts/death-bed.jpg" alt="Track Artwork" onerror="this.src='https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?q=80&w=150&auto=format&fit=crop'">
+        <div class="player-text">
+          <span id="player-title" class="track-title">Not Playing</span>
+          <span id="player-artist" class="track-artist">Select a song</span>
+        </div>
+        <button id="player-fav-btn" class="player-icon-btn" aria-label="Add to favorites">
+          <svg class="heart-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Player Center: Playback Controls and Seek -->
+      <div class="player-controls-container">
+        <div class="playback-buttons">
+          <button id="player-prev-btn" class="player-icon-btn" aria-label="Previous track">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5" stroke="currentColor" stroke-width="2"></line></svg>
+          </button>
+          <button id="player-play-btn" class="player-play-btn" aria-label="Play">
+            <svg id="play-icon-svg" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </button>
+          <button id="player-next-btn" class="player-icon-btn" aria-label="Next track">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="19" x2="19" y2="5" stroke="currentColor" stroke-width="2"></line></svg>
+          </button>
+        </div>
+
+        <div class="progress-bar-container">
+          <span id="player-time-current" class="time-label">0:00</span>
+          <div id="player-progress-wrap" class="progress-wrap" role="slider" aria-label="Seek progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div id="player-progress-bar" class="progress-bar">
+              <div class="progress-handle"></div>
+            </div>
+          </div>
+          <span id="player-time-total" class="time-label">0:00</span>
+        </div>
+      </div>
+
+      <!-- Player Right: Volume and Queue Toggles -->
+      <div class="player-extra-controls">
+        <button id="player-queue-btn" class="player-icon-btn" aria-label="Toggle queue panel">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        </button>
+        
+        <div class="volume-container">
+          <button id="player-mute-btn" class="player-icon-btn" aria-label="Mute/unmute volume">
+            <svg id="volume-icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+          </button>
+          <input type="range" id="volume-slider" min="0" max="1" step="0.05" value="0.7" aria-label="Volume slider">
+        </div>
+      </div>
+    </footer>
+
+    <!-- 5. MOBILE BOTTOM NAVIGATION -->
+    <nav class="mobile-nav" aria-label="Mobile Navigation Menu">
+      <button class="mobile-nav-link active" data-view="home" aria-label="Mobile Home">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+        <span>Home</span>
+      </button>
+      <button class="mobile-nav-link" data-view="discover" aria-label="Mobile Discover">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+        <span>Discover</span>
+      </button>
+      <!-- Mobile Mini player middle button trigger -->
+      <button class="mobile-player-nav-trigger" id="mobile-mini-player-btn" aria-label="Expand player">
+        <img id="mobile-mini-artwork" src="https://samplesongs.netlify.app/album-arts/death-bed.jpg" alt="Mini artwork">
+        <div class="pulse-indicator"></div>
+      </button>
+      <button class="mobile-nav-link" data-view="library" aria-label="Mobile Library">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+        <span>Library</span>
+      </button>
+      <button class="mobile-nav-link" data-view="favorites" aria-label="Mobile Favorites">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span>Favs</span>
+      </button>
+    </nav>
+
+    <!-- Global Application Toast Notification Drawer (For audio playback errors) -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
